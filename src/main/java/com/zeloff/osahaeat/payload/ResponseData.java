@@ -1,6 +1,6 @@
 package com.zeloff.osahaeat.payload;
 
-public class Payload {
+public class ResponseData {
     private int status = 200;
     private Object data;
     private String description;

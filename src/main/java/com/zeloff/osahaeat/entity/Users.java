@@ -23,6 +23,9 @@ public class Users {
     @Column(name = "create_date")
     private Date createDate;
 
+    @Column(name = "email")
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Roles roles;
@@ -35,6 +38,14 @@ public class Users {
 
     @OneToMany(mappedBy = "users")
     private Set<Orders> listOrder;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Set<Orders> getListOrder() {
         return listOrder;
