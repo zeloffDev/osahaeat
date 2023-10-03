@@ -32,4 +32,5 @@ public class LoginController {
         responseData.setData(loginServiceImp.checkSignup(signupPayload));
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
+
 }
