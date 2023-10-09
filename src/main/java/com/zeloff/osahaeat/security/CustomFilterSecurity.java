@@ -8,16 +8,19 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class CustomFilterSecurity {
     @Autowired
     CustomUserDetailsService customUserDetailsService;
-
+    @Autowired
+    CusotmizeJwtFilter cusotmizeJwtFilter;
     @Bean
     public AuthenticationManager authenticationManager(
             HttpSecurity httpSecurity) throws Exception {
@@ -25,16 +28,16 @@ public class CustomFilterSecurity {
         authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }
-
     @Bean
     public SecurityFilterChain filterChange(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.disable())
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll().anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults());
+                .csrf(csrf -> csrf.disable()).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll().anyRequest().authenticated());
+
+
+        http.addFilterBefore(cusotmizeJwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

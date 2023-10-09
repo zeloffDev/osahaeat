@@ -39,8 +39,6 @@ public class LoginService implements LoginServiceImp {
     @Override
     public boolean checkLogin(String UserName, String Password) {
         List<Users> listUsers = userRepository.findByUserNameAndPassword(UserName, Password);
-        System.out.println(UserName);
-        System.out.println(Password);
         for (Users users : listUsers) {
             System.out.println(users.getUserName());
         }

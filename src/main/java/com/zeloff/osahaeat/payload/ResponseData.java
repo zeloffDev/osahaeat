@@ -2,8 +2,18 @@ package com.zeloff.osahaeat.payload;
 
 public class ResponseData {
     private int status = 200;
+
+    private Boolean isSuccess = true;
     private Object data;
     private String description;
+
+    public Boolean getSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(Boolean success) {
+        isSuccess = success;
+    }
 
     public int getStatus() {
         return status;
