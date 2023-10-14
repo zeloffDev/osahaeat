@@ -21,6 +21,7 @@ public class CustomFilterSecurity {
     CustomUserDetailsService customUserDetailsService;
     @Autowired
     CusotmizeJwtFilter cusotmizeJwtFilter;
+
     @Bean
     public AuthenticationManager authenticationManager(
             HttpSecurity httpSecurity) throws Exception {
@@ -28,16 +29,17 @@ public class CustomFilterSecurity {
         authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
         return authenticationManagerBuilder.build();
     }
+
     @Bean
     public SecurityFilterChain filterChange(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable()).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**").permitAll().anyRequest().authenticated());
-
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**", "/restaurant/files/**").permitAll().anyRequest().authenticated());
 
         http.addFilterBefore(cusotmizeJwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
