@@ -21,14 +21,14 @@ public class Category {
     private Set<Food> listFood;
 
     @OneToMany(mappedBy = "category")
-    private Set<MenuRestourant> lisMenuRestourants;
+    private Set<MenuRestaurant> listMenuRestaurants;
 
-    public Set<MenuRestourant> getLisMenuRestourants() {
-        return lisMenuRestourants;
+    public Set<MenuRestaurant> getListMenuRestaurants() {
+        return listMenuRestaurants;
     }
 
-    public void setLisMenuRestourants(Set<MenuRestourant> lisMenuRestourants) {
-        this.lisMenuRestourants = lisMenuRestourants;
+    public void setListMenuRestaurants(Set<MenuRestaurant> lisMenuRestaurants) {
+        this.listMenuRestaurants = lisMenuRestaurants;
     }
 
     public Set<Food> getListFood() {

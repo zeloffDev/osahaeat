@@ -32,7 +32,7 @@ public class Restourant {
     private Set<RatetingRestourant> listRatetingRestourant;
 
     @OneToMany(mappedBy = "restourant")
-    private Set<MenuRestourant> listRestourants;
+    private Set<MenuRestaurant> listRestourants;
 
     @OneToMany(mappedBy = "restourant")
     private Set<Orders> listOrders;
@@ -56,20 +56,20 @@ public class Restourant {
         this.listOrders = listOrders;
     }
 
-    public Set<MenuRestourant> getListRestourants() {
+    public Set<MenuRestaurant> getListRestourants() {
         return listRestourants;
     }
 
-    public void setListRestourants(Set<MenuRestourant> liRestourants) {
-        this.listRestourants = liRestourants;
+    public void setListRestourants(Set<MenuRestaurant> liRestaurants) {
+        this.listRestourants = liRestaurants;
     }
 
     public Set<RatetingRestourant> getListRatetingRestourant() {
         return listRatetingRestourant;
     }
 
-    public void setListRatetingRestourant(Set<RatetingRestourant> listRatetingRestourant) {
-        this.listRatetingRestourant = listRatetingRestourant;
+    public void setListRatetingRestaurant(Set<RatetingRestourant> listRatetingRestaurant) {
+        this.listRatetingRestourant = listRatetingRestaurant;
     }
 
     public int getId() {

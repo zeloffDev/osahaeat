@@ -9,12 +9,13 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id ;
-
+    @Column(name="title")
+    private String title;
     @Column(name = "image")
     private String image;
-
     @Column(name = "time_ship")
     private String timeShip;
+
     @Column(name = "price")
     private double price;
 
@@ -30,6 +31,14 @@ public class Food {
 
     @OneToMany(mappedBy = "food")
     private Set<OrderDetail> listOrderDetails;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Set<OrderDetail> getListOrderDetails() {
         return listOrderDetails;

@@ -34,7 +34,7 @@ public class CustomFilterSecurity {
     public SecurityFilterChain filterChange(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable()).sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**", "/restaurant/files/**").permitAll().anyRequest().authenticated());
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/login/**", "/restaurant/files/**","/files/**").permitAll().anyRequest().authenticated());
 
         http.addFilterBefore(cusotmizeJwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

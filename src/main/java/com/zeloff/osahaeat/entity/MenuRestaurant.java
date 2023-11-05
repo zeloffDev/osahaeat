@@ -6,14 +6,13 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity(name = "menu_restourant")
-public class MenuRestourant {
+public class MenuRestaurant {
     @EmbeddedId
     private KeyMenuRestourant keyMenuRestourant;
 
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
-
     @ManyToOne()
     @JoinColumn(name = "restourant_id")
     private Restourant restourant;
@@ -27,7 +26,6 @@ public class MenuRestourant {
     public void setKeyMenuRestourant(KeyMenuRestourant keyMenuRestourant) {
         this.keyMenuRestourant = keyMenuRestourant;
     }
-
     public Category getCategory() {
         return category;
     }
